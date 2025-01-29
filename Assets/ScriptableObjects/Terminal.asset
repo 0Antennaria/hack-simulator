@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9748dbeed3722a44b8d8ef6e1810a31, type: 3}
+  m_Name: Terminal
+  m_EditorClassIdentifier: 
+  _imageIcon: {fileID: -5016457119774846098, guid: 1c58bb134018e7d41b67afbe88bc4d30, type: 3}
+  _name: "\u041D\u043E\u0432\u0430\u044F \u043A\u043E\u043D\u0441\u043E\u043B\u044C\u043D\u0430\u044F
+    \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0430"
+  _openingApplication: {fileID: 7499812612973367934, guid: 1d2bf619e8e3faa49b99bcc9f105fc80, type: 3}
