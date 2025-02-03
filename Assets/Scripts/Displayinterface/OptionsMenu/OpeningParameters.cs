@@ -3,56 +3,32 @@ using UnityEngine.UIElements;
 
 public class OpeningParameters : MonoBehaviour
 {
-    [SerializeField] private GameObject _sizeMenu;
-    [SerializeField] private GameObject _parametrsMenu;
-
-    private PlayerInput _playerInput;
-    private MouseLocationTracking _mouseLocation;
-
-    private float _sizePanelX;
-    private float _sizePanelY;
+    [SerializeField] private MouseLocationTracking _mouseLocation;
 
     private void Awake()
     {
-        _playerInput = new PlayerInput();
         _mouseLocation = GetComponent<MouseLocationTracking>();
-
-        RectTransform sizeParametrsPanel = (RectTransform)_sizeMenu.transform;
-        _sizePanelX = (sizeParametrsPanel.rect.width / 2);
-        _sizePanelY = (sizeParametrsPanel.rect.height / 2);
-
-        _playerInput.User.RightClick.performed += ctx => CheckLocationOpeningPanel();
     }
 
-    private void OnEnable()
-    {
-        _playerInput.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _playerInput.Disable();
-    }
-
-    private void CheckLocationOpeningPanel()
+    public void CheckLocationOpeningPanel(float _sizePanelX, float _sizePanelY, GameObject _sizeMenu, GameObject _parametrsMenu)
     {
         float postitionX = _mouseLocation.PositionMouse.x;
         float postitionY = _mouseLocation.PositionMouse.y;
 
         if (postitionX < 0 && postitionY < 0)
-            ShowOptionsMenu(-_sizePanelX, -_sizePanelY);
+            ShowOptionsMenu(-_sizePanelX, -_sizePanelY, _sizeMenu, _parametrsMenu);
 
         if (postitionX > 0 && postitionY < 0)
-            ShowOptionsMenu(_sizePanelX, -_sizePanelY);
+            ShowOptionsMenu(_sizePanelX, -_sizePanelY, _sizeMenu, _parametrsMenu);
 
         if (postitionX < 0 && postitionY > 0)
-            ShowOptionsMenu(-_sizePanelX, _sizePanelY);
+            ShowOptionsMenu(-_sizePanelX, _sizePanelY, _sizeMenu, _parametrsMenu);
 
         if (postitionX > 0 && postitionY > 0)
-            ShowOptionsMenu(_sizePanelX, _sizePanelY);
+            ShowOptionsMenu(_sizePanelX, _sizePanelY, _sizeMenu, _parametrsMenu);
     }
 
-    private void ShowOptionsMenu(float positionX, float positionY)
+    private void ShowOptionsMenu(float positionX, float positionY, GameObject _sizeMenu, GameObject _parametrsMenu)
     {
         _sizeMenu.transform.position = new Vector3
         (Input.mousePosition.x - positionX, Input.mousePosition.y - positionY, 0);

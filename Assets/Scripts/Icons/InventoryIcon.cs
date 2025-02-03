@@ -1,26 +1,34 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class InventoryIcon : MonoBehaviour, IPointerClickHandler
+public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHandler
 {
     private PlayerInput _playerInput;
-    [SerializeField] private ActiveIcon _activeIcon;
+    private TrackingActiveIcon _iconView;
+    [SerializeField] private CreateOptionsIconPanel _iconPanel;
+    [SerializeField] private CreateParametrPnael _parametrsPanel;
 
     private void Awake()
     {
         _playerInput = new PlayerInput();
+        _iconView = GetComponent<TrackingActiveIcon>();
+
+        _playerInput.Icon.RightClick.performed += ctx => CreateIconMenu();
+
+    }
+
+    private void Start()
+    {
+        _iconPanel = FindAnyObjectByType<CreateOptionsIconPanel>();
+        _parametrsPanel = FindAnyObjectByType<CreateParametrPnael>();
+
     }
 
     private void CreateIconMenu()
     {
-        if (_activeIcon == this)
-            Debug.Log("Ãאפ-דאפ");
-    }
-
-    private void OnEnable()
-    {
-        _playerInput.Enable();
+        _iconPanel.OpenParametrs();
     }
 
     private void OnDisable()
@@ -30,6 +38,13 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _playerInput.User.RightOnIcon.performed += ctx => CreateIconMenu();
+        _playerInput.Enable();
+        _parametrsPanel.OffPanel();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _playerInput.Disable();
+        _parametrsPanel.OnPanel();
     }
 }

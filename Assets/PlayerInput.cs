@@ -24,6 +24,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     ""name"": ""DesktopInput 1"",
     ""maps"": [
         {
+            ""name"": ""Icon"",
+            ""id"": ""cbed684d-8464-46d1-9851-a318e86f8ea3"",
+            ""actions"": [
+                {
+                    ""name"": ""Right Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""10e65034-e5f6-42d8-a727-ee616020a8cc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""428ee6ad-e822-4393-bcc8-915e4fed355c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Right Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""User"",
             ""id"": ""e76a5a66-af13-42fc-9a82-fff9cc7edfa5"",
             ""actions"": [
@@ -40,15 +68,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Left Click"",
                     ""type"": ""Button"",
                     ""id"": ""7e97040b-5afb-4920-8544-221926acec38"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Right On Icon"",
-                    ""type"": ""Button"",
-                    ""id"": ""59277c40-a29e-422f-ba51-1ec2a896d6e6"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -77,45 +96,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Left Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bc5687d4-3aff-4bc5-9741-f4ae5adfb211"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Right On Icon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Icon"",
-            ""id"": ""cbed684d-8464-46d1-9851-a318e86f8ea3"",
-            ""actions"": [
-                {
-                    ""name"": ""Right Click On Icon"",
-                    ""type"": ""Button"",
-                    ""id"": ""10e65034-e5f6-42d8-a727-ee616020a8cc"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""428ee6ad-e822-4393-bcc8-915e4fed355c"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Right Click On Icon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -139,20 +119,19 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     ]
 }");
+        // Icon
+        m_Icon = asset.FindActionMap("Icon", throwIfNotFound: true);
+        m_Icon_RightClick = m_Icon.FindAction("Right Click", throwIfNotFound: true);
         // User
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_RightClick = m_User.FindAction("Right Click", throwIfNotFound: true);
         m_User_LeftClick = m_User.FindAction("Left Click", throwIfNotFound: true);
-        m_User_RightOnIcon = m_User.FindAction("Right On Icon", throwIfNotFound: true);
-        // Icon
-        m_Icon = asset.FindActionMap("Icon", throwIfNotFound: true);
-        m_Icon_RightClickOnIcon = m_Icon.FindAction("Right Click On Icon", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
     {
-        UnityEngine.Debug.Assert(!m_User.enabled, "This will cause a leak and performance issues, PlayerInput.User.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Icon.enabled, "This will cause a leak and performance issues, PlayerInput.Icon.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_User.enabled, "This will cause a leak and performance issues, PlayerInput.User.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -211,77 +190,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // User
-    private readonly InputActionMap m_User;
-    private List<IUserActions> m_UserActionsCallbackInterfaces = new List<IUserActions>();
-    private readonly InputAction m_User_RightClick;
-    private readonly InputAction m_User_LeftClick;
-    private readonly InputAction m_User_RightOnIcon;
-    public struct UserActions
-    {
-        private @PlayerInput m_Wrapper;
-        public UserActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @RightClick => m_Wrapper.m_User_RightClick;
-        public InputAction @LeftClick => m_Wrapper.m_User_LeftClick;
-        public InputAction @RightOnIcon => m_Wrapper.m_User_RightOnIcon;
-        public InputActionMap Get() { return m_Wrapper.m_User; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UserActions set) { return set.Get(); }
-        public void AddCallbacks(IUserActions instance)
-        {
-            if (instance == null || m_Wrapper.m_UserActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UserActionsCallbackInterfaces.Add(instance);
-            @RightClick.started += instance.OnRightClick;
-            @RightClick.performed += instance.OnRightClick;
-            @RightClick.canceled += instance.OnRightClick;
-            @LeftClick.started += instance.OnLeftClick;
-            @LeftClick.performed += instance.OnLeftClick;
-            @LeftClick.canceled += instance.OnLeftClick;
-            @RightOnIcon.started += instance.OnRightOnIcon;
-            @RightOnIcon.performed += instance.OnRightOnIcon;
-            @RightOnIcon.canceled += instance.OnRightOnIcon;
-        }
-
-        private void UnregisterCallbacks(IUserActions instance)
-        {
-            @RightClick.started -= instance.OnRightClick;
-            @RightClick.performed -= instance.OnRightClick;
-            @RightClick.canceled -= instance.OnRightClick;
-            @LeftClick.started -= instance.OnLeftClick;
-            @LeftClick.performed -= instance.OnLeftClick;
-            @LeftClick.canceled -= instance.OnLeftClick;
-            @RightOnIcon.started -= instance.OnRightOnIcon;
-            @RightOnIcon.performed -= instance.OnRightOnIcon;
-            @RightOnIcon.canceled -= instance.OnRightOnIcon;
-        }
-
-        public void RemoveCallbacks(IUserActions instance)
-        {
-            if (m_Wrapper.m_UserActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IUserActions instance)
-        {
-            foreach (var item in m_Wrapper.m_UserActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_UserActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public UserActions @User => new UserActions(this);
-
     // Icon
     private readonly InputActionMap m_Icon;
     private List<IIconActions> m_IconActionsCallbackInterfaces = new List<IIconActions>();
-    private readonly InputAction m_Icon_RightClickOnIcon;
+    private readonly InputAction m_Icon_RightClick;
     public struct IconActions
     {
         private @PlayerInput m_Wrapper;
         public IconActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @RightClickOnIcon => m_Wrapper.m_Icon_RightClickOnIcon;
+        public InputAction @RightClick => m_Wrapper.m_Icon_RightClick;
         public InputActionMap Get() { return m_Wrapper.m_Icon; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -291,16 +208,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_IconActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_IconActionsCallbackInterfaces.Add(instance);
-            @RightClickOnIcon.started += instance.OnRightClickOnIcon;
-            @RightClickOnIcon.performed += instance.OnRightClickOnIcon;
-            @RightClickOnIcon.canceled += instance.OnRightClickOnIcon;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
         }
 
         private void UnregisterCallbacks(IIconActions instance)
         {
-            @RightClickOnIcon.started -= instance.OnRightClickOnIcon;
-            @RightClickOnIcon.performed -= instance.OnRightClickOnIcon;
-            @RightClickOnIcon.canceled -= instance.OnRightClickOnIcon;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
         }
 
         public void RemoveCallbacks(IIconActions instance)
@@ -318,6 +235,60 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public IconActions @Icon => new IconActions(this);
+
+    // User
+    private readonly InputActionMap m_User;
+    private List<IUserActions> m_UserActionsCallbackInterfaces = new List<IUserActions>();
+    private readonly InputAction m_User_RightClick;
+    private readonly InputAction m_User_LeftClick;
+    public struct UserActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UserActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RightClick => m_Wrapper.m_User_RightClick;
+        public InputAction @LeftClick => m_Wrapper.m_User_LeftClick;
+        public InputActionMap Get() { return m_Wrapper.m_User; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UserActions set) { return set.Get(); }
+        public void AddCallbacks(IUserActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UserActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UserActionsCallbackInterfaces.Add(instance);
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
+            @LeftClick.started += instance.OnLeftClick;
+            @LeftClick.performed += instance.OnLeftClick;
+            @LeftClick.canceled += instance.OnLeftClick;
+        }
+
+        private void UnregisterCallbacks(IUserActions instance)
+        {
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
+            @LeftClick.started -= instance.OnLeftClick;
+            @LeftClick.performed -= instance.OnLeftClick;
+            @LeftClick.canceled -= instance.OnLeftClick;
+        }
+
+        public void RemoveCallbacks(IUserActions instance)
+        {
+            if (m_Wrapper.m_UserActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUserActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UserActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UserActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UserActions @User => new UserActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -327,14 +298,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_MouseandKeyboardSchemeIndex];
         }
     }
+    public interface IIconActions
+    {
+        void OnRightClick(InputAction.CallbackContext context);
+    }
     public interface IUserActions
     {
         void OnRightClick(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
-        void OnRightOnIcon(InputAction.CallbackContext context);
-    }
-    public interface IIconActions
-    {
-        void OnRightClickOnIcon(InputAction.CallbackContext context);
     }
 }
