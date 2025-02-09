@@ -7,10 +7,12 @@ public class IconView : MonoBehaviour
     [SerializeField] private ComputerIconsSO _typefile;
 
     [SerializeField] private Image _icon;
-    [SerializeField] private TMP_Text _text;
+    [HideInInspector] public TMP_Text _text;
 
     [SerializeField] private GameObject _hoverPanel;
     [SerializeField] private GameObject _clickPanel;
+    
+    public GameObject _inputField;
 
     public void ChangeActivePanelWhenHover(bool active)
     {

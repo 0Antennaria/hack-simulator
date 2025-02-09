@@ -6,6 +6,8 @@ public class ActiveIconView : MonoBehaviour
 {
     [SerializeField] static private IconView _currentIcon;
 
+    public IconView CurrentIcon => _currentIcon;
+
     public void ChangeActiveIcon(IconView icon)
     {
         if (_currentIcon != null)
@@ -19,11 +21,10 @@ public class ActiveIconView : MonoBehaviour
 
     public void ResetActive()
     {
-        Debug.Log(_currentIcon);
-
         if (_currentIcon != null)
         {
             _currentIcon.ChangeActivePanelWhenClick(false);
+            _currentIcon = null;
         }
     }
 }

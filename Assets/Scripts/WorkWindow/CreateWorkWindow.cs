@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class CreateProgram : MonoBehaviour
+public class CreateWorkWindow : MonoBehaviour
 {
     [SerializeField] private ActiveSlot _container;
 
