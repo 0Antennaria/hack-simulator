@@ -1,6 +1,4 @@
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
-using System;
 
 public class ActiveIconView : MonoBehaviour
 {

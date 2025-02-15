@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Icon", menuName = "PC/Create Icon")]
 public class ComputerIconsSO : ScriptableObject
