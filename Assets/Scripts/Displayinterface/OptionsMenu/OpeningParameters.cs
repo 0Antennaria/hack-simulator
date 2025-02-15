@@ -33,6 +33,7 @@ public class OpeningParameters : MonoBehaviour
         _sizeMenu.transform.position = new Vector3
         (Input.mousePosition.x - positionX, Input.mousePosition.y - positionY, 0);
 
+
         _parametrsMenu.SetActive(true);
     }
 }

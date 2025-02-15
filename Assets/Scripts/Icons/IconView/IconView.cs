@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class IconView : MonoBehaviour
 {
-    [SerializeField] private ComputerIconsSO _typefile;
+    public ComputerIconsSO _typefile;
 
     [SerializeField] private Image _icon;
-    [HideInInspector] public TMP_Text _text;
+    public TMP_Text _text;
 
     [SerializeField] private GameObject _hoverPanel;
     [SerializeField] private GameObject _clickPanel;
@@ -27,6 +27,6 @@ public class IconView : MonoBehaviour
     private void Awake()
     {
         _icon.sprite = _typefile.ImageIcon;
-        _text.text = _typefile.name;
+        _text.text = _typefile.Name;
     }
 }

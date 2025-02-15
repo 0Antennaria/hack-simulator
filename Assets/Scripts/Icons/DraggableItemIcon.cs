@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(TrackingActiveIcon))]
 [RequireComponent(typeof(AbilityToMoveIcon))]
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItemIcon : DraggableItem, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private Transform _startingPosition;
     private AbilityToMoveIcon _image;
 
     private void Awake()
@@ -15,29 +14,27 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         _image = GetComponent<AbilityToMoveIcon>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
-        _startingPosition = transform.parent;
-        transform.SetParent(transform.root);
-        transform.SetAsLastSibling();
+        base.OnBeginDrag(eventData);
         _image.DestroyRaycastTarget();
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public override void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        base.OnDrag(eventData);
         _image.ChangeColor(255, 255, 255, 70);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public override void OnEndDrag(PointerEventData eventData)
     {
-        transform.SetParent(_startingPosition);
+        base.OnEndDrag(eventData);
         _image.TurnRaycastTarget();
         _image.ChangeColor(255, 255, 255, 255);
     }
 
     public void ChangeSlot(Transform transform)
     {
-        _startingPosition = transform.transform;
+        StartingPosition = transform.transform;
     }
 }

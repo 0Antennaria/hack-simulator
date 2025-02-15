@@ -35,6 +35,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Double Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a3dc223-d4de-4265-942a-ebf862f7ccbb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
                     ""action"": ""Right Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9aae44a1-4f44-464a-b9af-165327e21d12"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Double Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -122,6 +142,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Icon
         m_Icon = asset.FindActionMap("Icon", throwIfNotFound: true);
         m_Icon_RightClick = m_Icon.FindAction("Right Click", throwIfNotFound: true);
+        m_Icon_DoubleClick = m_Icon.FindAction("Double Click", throwIfNotFound: true);
         // User
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_RightClick = m_User.FindAction("Right Click", throwIfNotFound: true);
@@ -194,11 +215,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Icon;
     private List<IIconActions> m_IconActionsCallbackInterfaces = new List<IIconActions>();
     private readonly InputAction m_Icon_RightClick;
+    private readonly InputAction m_Icon_DoubleClick;
     public struct IconActions
     {
         private @PlayerInput m_Wrapper;
         public IconActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @RightClick => m_Wrapper.m_Icon_RightClick;
+        public InputAction @DoubleClick => m_Wrapper.m_Icon_DoubleClick;
         public InputActionMap Get() { return m_Wrapper.m_Icon; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -211,6 +234,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RightClick.started += instance.OnRightClick;
             @RightClick.performed += instance.OnRightClick;
             @RightClick.canceled += instance.OnRightClick;
+            @DoubleClick.started += instance.OnDoubleClick;
+            @DoubleClick.performed += instance.OnDoubleClick;
+            @DoubleClick.canceled += instance.OnDoubleClick;
         }
 
         private void UnregisterCallbacks(IIconActions instance)
@@ -218,6 +244,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RightClick.started -= instance.OnRightClick;
             @RightClick.performed -= instance.OnRightClick;
             @RightClick.canceled -= instance.OnRightClick;
+            @DoubleClick.started -= instance.OnDoubleClick;
+            @DoubleClick.performed -= instance.OnDoubleClick;
+            @DoubleClick.canceled -= instance.OnDoubleClick;
         }
 
         public void RemoveCallbacks(IIconActions instance)
@@ -301,6 +330,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IIconActions
     {
         void OnRightClick(InputAction.CallbackContext context);
+        void OnDoubleClick(InputAction.CallbackContext context);
     }
     public interface IUserActions
     {

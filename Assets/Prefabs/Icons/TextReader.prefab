@@ -988,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4e57de25716df478cc63352ee57950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Panel: {fileID: 7499812612973367934}
 --- !u!114 &967382362843357794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,8 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad52ec06d67e9b64e98567518e917b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _iconPanel: {fileID: 0}
-  _parametrsPanel: {fileID: 0}
+  _typefile: {fileID: -6642510227554102429, guid: 0027d7c0040304341a7694001714fc31, type: 3}
 --- !u!1 &8597056252522369638
 GameObject:
   m_ObjectHideFlags: 0

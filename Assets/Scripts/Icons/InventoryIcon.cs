@@ -1,32 +1,39 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHandler
 {
+   [SerializeField] private ActiveIconView _typefile;
+
+    private CreateWorkWindow _createWorkPanel;
+    private CreateParametrPnael _parametrsPanel;
     private PlayerInput _playerInput;
-    private TrackingActiveIcon _iconView;
-    [SerializeField] private CreateOptionsIconPanel _iconPanel;
-    [SerializeField] private CreateParametrPnael _parametrsPanel;
+    private CreateOptionsIconPanel _iconPanel;
 
     private void Awake()
     {
         _playerInput = new PlayerInput();
-        _iconView = GetComponent<TrackingActiveIcon>();
 
-        _playerInput.Icon.RightClick.performed += ctx => CreateIconMenu();
-
+        _playerInput.Icon.RightClick.performed += ctx => OpenIconMenu();
+        _playerInput.Icon.DoubleClick.performed += ctx => CreateWorkWindow();
     }
 
     private void Start()
     {
         _iconPanel = FindAnyObjectByType<CreateOptionsIconPanel>();
         _parametrsPanel = FindAnyObjectByType<CreateParametrPnael>();
-
+        _createWorkPanel = FindAnyObjectByType<CreateWorkWindow>();
     }
 
-    private void CreateIconMenu()
+    private void CreateWorkWindow()
+    {
+        _createWorkPanel.Create(_typefile.CurrentIcon._typefile.OpeningApplication);
+    }
+
+    private void OpenIconMenu()
     {
         _iconPanel.OpenParametrs();
     }

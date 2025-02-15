@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class CreateWorkWindow : MonoBehaviour
 {
-    [SerializeField] private ActiveSlot _container;
+    [SerializeField] private CreateWorkWindow _container;
+
+    private void Awake()
+    {
+        _container = GetComponent<CreateWorkWindow>();
+    }
 
     public void Create(GameObject program)
     {
-        GameObject _program = Instantiate(program, _container.CurrentSlot.transform);
+        GameObject _program = Instantiate(program, _container.transform);
     }
 }
+

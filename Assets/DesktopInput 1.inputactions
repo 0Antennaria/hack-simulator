@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Double Click",
+                    "type": "Button",
+                    "id": "7a3dc223-d4de-4265-942a-ebf862f7ccbb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -24,6 +33,17 @@
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
                     "action": "Right Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9aae44a1-4f44-464a-b9af-165327e21d12",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Double Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
