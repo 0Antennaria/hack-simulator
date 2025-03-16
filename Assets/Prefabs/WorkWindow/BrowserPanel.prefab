@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: -7647446792144121543}
   - component: {fileID: 7617575218239413872}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: BrowserPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,14 +1,17 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHandler
 {
-   [SerializeField] private ActiveIconView _typefile;
+    [SerializeField] private ActiveIconView _typefile;
 
     private CreateWorkWindow _createWorkPanel;
     private CreateParametrPnael _parametrsPanel;
     private PlayerInput _playerInput;
     private CreateOptionsIconPanel _iconPanel;
+    private AddInformation _informationAboutPanel;
 
     private void Awake()
     {
@@ -23,11 +26,14 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHa
         _iconPanel = FindAnyObjectByType<CreateOptionsIconPanel>();
         _parametrsPanel = FindAnyObjectByType<CreateParametrPnael>();
         _createWorkPanel = FindAnyObjectByType<CreateWorkWindow>();
+
+        _informationAboutPanel = GetComponent<AddInformation>();
     }
 
     private void CreateWorkWindow()
     {
-        _createWorkPanel.Create(_typefile.CurrentIcon._typefile.OpeningApplication);
+        GameObject panel = _createWorkPanel.CreateAndReturn(_typefile.CurrentIcon._typefile.OpeningApplication);
+        _informationAboutPanel.AddApplication(panel);
     }
 
     private void OpenIconMenu()

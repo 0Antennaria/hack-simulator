@@ -13,5 +13,10 @@ public class CreateWorkWindow : MonoBehaviour
     {
         GameObject _program = Instantiate(program, _container.transform);
     }
+
+    public GameObject CreateAndReturn(GameObject program)
+    {
+        return Instantiate(program, _container.transform);
+    }
 }
 
