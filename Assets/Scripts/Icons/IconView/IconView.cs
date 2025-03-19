@@ -27,6 +27,7 @@ public class IconView : MonoBehaviour
     private void Awake()
     {
         _icon.sprite = _typefile.ImageIcon;
-        _text.text = _typefile.Name;
+         _text.text = _typefile.Name;
+
     }
 }
