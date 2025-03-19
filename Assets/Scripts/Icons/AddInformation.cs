@@ -1,15 +1,30 @@
 using System;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class AddInformation : MonoBehaviour
 {
-    private GameObject _currentPanel;
+    [SerializeField] private SaveText _icon;
+    [SerializeField] private TMP_InputField _text;
 
-    public void AddApplication(GameObject panel)
+
+    public void AddInfo()
     {
-        _currentPanel = panel;
-        Debug.Log(_currentPanel);
-    }    
+        _icon.OnSaveText(_text);
+    }
 
+    public void AddInfoWhenCreate(SaveText icon)
+    {
+        if(_icon == null)
+            _icon = icon;
+    }
+    public void LoadInfo()
+    {
+        Debug.Log(_icon.Text);
+        Debug.Log(_text.text);
+        _text.text = _icon.Text;
+    }
 }

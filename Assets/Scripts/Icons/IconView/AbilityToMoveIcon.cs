@@ -23,7 +23,8 @@ public class AbilityToMoveIcon : MonoBehaviour
 
     public void ChangeColor(byte red, byte green, byte blue, byte alpha)
     {
-        _icon.color = new Color32(red, green, blue, alpha);
+        _icon.color = new Color32
+            (red, green, blue, alpha);
     }
 
 }

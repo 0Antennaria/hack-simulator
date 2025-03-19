@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 967382362843357794}
   - component: {fileID: 5280835260174455499}
   - component: {fileID: -8612046200864339419}
-  - component: {fileID: -8577340026562683827}
+  - component: {fileID: 5817041669278652684}
   m_Layer: 5
   m_Name: TextReader
   m_TagString: Untagged
@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _typefile: {fileID: -6642510227554102429, guid: 0027d7c0040304341a7694001714fc31, type: 3}
---- !u!114 &-8577340026562683827
+--- !u!114 &5817041669278652684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1041,9 +1041,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7499812612973367934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67871585b3236944a74770860b22641, type: 3}
+  m_Script: {fileID: 11500000, guid: 93c4123930f67c34c897dd33cbc28aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _text: {fileID: 0}
 --- !u!1 &8597056252522369638
 GameObject:
   m_ObjectHideFlags: 0

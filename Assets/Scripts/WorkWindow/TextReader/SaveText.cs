@@ -1,13 +1,17 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class SaveText : MonoBehaviour
 {
-    public TMP_Text _text;
+    private string _text;
 
-    public void OnSaveText() 
+    public string Text => _text;
+
+    public void OnSaveText(TMP_InputField text) 
     { 
-
+        this._text = text.text;
+        Debug.Log(this._text);
     }
 }

@@ -11,7 +11,7 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHa
     private CreateParametrPnael _parametrsPanel;
     private PlayerInput _playerInput;
     private CreateOptionsIconPanel _iconPanel;
-    private AddInformation _informationAboutPanel;
+    private SaveText _informationAboutPanel;
 
     private void Awake()
     {
@@ -27,13 +27,17 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHa
         _parametrsPanel = FindAnyObjectByType<CreateParametrPnael>();
         _createWorkPanel = FindAnyObjectByType<CreateWorkWindow>();
 
-        _informationAboutPanel = GetComponent<AddInformation>();
+        _informationAboutPanel = GetComponent<SaveText>();
     }
 
     private void CreateWorkWindow()
     {
         GameObject panel = _createWorkPanel.CreateAndReturn(_typefile.CurrentIcon._typefile.OpeningApplication);
-        _informationAboutPanel.AddApplication(panel);
+        if (panel.TryGetComponent<AddInformation>(out AddInformation workpanel))
+        {
+            workpanel.AddInfoWhenCreate(_informationAboutPanel);
+            workpanel.LoadInfo();
+        }
     }
 
     private void OpenIconMenu()
