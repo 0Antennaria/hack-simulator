@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InteractingIcon : MonoBehaviour
 {
@@ -17,5 +18,6 @@ public class InteractingIcon : MonoBehaviour
     public void Show()
     {
         _activeIcon.CurrentIcon._inputField.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(_activeIcon.CurrentIcon._inputField.gameObject);
     }
 }

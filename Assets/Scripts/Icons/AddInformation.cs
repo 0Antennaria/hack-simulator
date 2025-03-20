@@ -10,7 +10,6 @@ public class AddInformation : MonoBehaviour
     [SerializeField] private SaveText _icon;
     [SerializeField] private TMP_InputField _text;
 
-
     public void AddInfo()
     {
         _icon.OnSaveText(_text);
@@ -23,8 +22,6 @@ public class AddInformation : MonoBehaviour
     }
     public void LoadInfo()
     {
-        Debug.Log(_icon.Text);
-        Debug.Log(_text.text);
         _text.text = _icon.Text;
     }
 }

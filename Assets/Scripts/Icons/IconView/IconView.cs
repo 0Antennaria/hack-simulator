@@ -28,6 +28,5 @@ public class IconView : MonoBehaviour
     {
         _icon.sprite = _typefile.ImageIcon;
          _text.text = _typefile.Name;
-
     }
 }

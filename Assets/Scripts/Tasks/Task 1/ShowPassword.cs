@@ -18,12 +18,9 @@ public class ShowPassword : MonoBehaviour
         if(_inputField.text == "HELLO")
         {
             Destroy(_panel);
-            Debug.Log("wwww");
         }
         else
         {
-            Debug.Log("wwww");
-            Debug.Log(_inputField.text);
             _animator.SetTrigger("wrong");
         }
 

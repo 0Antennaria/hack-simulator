@@ -575,9 +575,9 @@ GameObject:
   - component: {fileID: 5719828188400122943}
   - component: {fileID: 5280835260174455499}
   - component: {fileID: 318656543339065692}
-  - component: {fileID: 3974877706675249118}
+  - component: {fileID: 5011329013987105326}
   m_Layer: 3
-  m_Name: Terminal
+  m_Name: Picture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9b4393a2bd7de42962baa130b6f080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _typefile: {fileID: 11400000, guid: 1143a0ec0af86444a813c125bce8cd2e, type: 2}
+  _typefile: {fileID: 11400000, guid: c7a8c2652bad32144a288920783ceb92, type: 2}
   _icon: {fileID: 7119077130240935496}
   _text: {fileID: 3843651519890200687}
   _hoverPanel: {fileID: 5422145022473791824}
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _typefile: {fileID: -6642510227554102429, guid: 0027d7c0040304341a7694001714fc31, type: 3}
---- !u!114 &3974877706675249118
+--- !u!114 &5011329013987105326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iconView: {fileID: 2590889383625165965}
-  _name: {fileID: 3974877706675249118}
+  _name: {fileID: 5011329013987105326}
 --- !u!1 &8597056252522369638
 GameObject:
   m_ObjectHideFlags: 0

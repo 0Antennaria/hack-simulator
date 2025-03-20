@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DraggableItemWorkWindow : DraggableItem
 {
@@ -12,22 +13,20 @@ public class DraggableItemWorkWindow : DraggableItem
     {
         _localMousePosition = _panel.InverseTransformPoint(Input.mousePosition);
         base.OnBeginDrag(eventData);
-        _image.ChangeColor(21, 21, 21, 255);
-
+        _image.ChangeAlpha(1);
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
         Panel.transform.position = new Vector3
             (Input.mousePosition.x - _localMousePosition.x, Input.mousePosition.y - _localMousePosition.y, 0);
-        _image.ChangeColor(21, 21, 21, 70);
-
+        _image.ChangeAlpha(0.7f);
     }
 
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
-        _image.ChangeColor(21, 21, 21, 255);
+        _image.ChangeAlpha(1);
     }
 
     public void ChangeSlot(Transform transform)

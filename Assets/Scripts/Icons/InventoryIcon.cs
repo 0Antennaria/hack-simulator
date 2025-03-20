@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHandler
 {
@@ -12,6 +13,9 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHa
     private PlayerInput _playerInput;
     private CreateOptionsIconPanel _iconPanel;
     private SaveText _informationAboutPanel;
+    private SaveName _saveName;
+
+    public SaveName SaveName => _saveName;
 
     private void Awake()
     {
@@ -28,15 +32,29 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHa
         _createWorkPanel = FindAnyObjectByType<CreateWorkWindow>();
 
         _informationAboutPanel = GetComponent<SaveText>();
+        _saveName = GetComponent<SaveName>();
     }
 
     private void CreateWorkWindow()
     {
         GameObject panel = _createWorkPanel.CreateAndReturn(_typefile.CurrentIcon._typefile.OpeningApplication);
+
         if (panel.TryGetComponent<AddInformation>(out AddInformation workpanel))
         {
             workpanel.AddInfoWhenCreate(_informationAboutPanel);
             workpanel.LoadInfo();
+        }
+
+        if (panel.TryGetComponent<LoadNamePanel>(out LoadNamePanel loadpanel))
+        {
+            loadpanel.LoadName(_saveName.Name);
+        }
+
+        if (this.TryGetComponent<BlockOpen>(out BlockOpen blockOpen))
+        {
+            panel.SetActive(false);
+            blockOpen.OnSavePanel(panel);
+            blockOpen.OnBlockPanel();
         }
     }
 

@@ -15,8 +15,8 @@ public class AbilityToMoveWorkWindow : MonoBehaviour
         _icon.raycastTarget = true;
     }
 
-    public void ChangeColor(byte red, byte green, byte blue, byte alpha)
+    public void ChangeAlpha(float alpha)
     {
-        _icon.color = new Color32(red, green, blue, alpha);
+        _icon.color = new Color(_icon.color.r, _icon.color.g, _icon.color.b, alpha);
     }
 }
