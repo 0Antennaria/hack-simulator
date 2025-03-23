@@ -17,6 +17,9 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHa
 
     public SaveName SaveName => _saveName;
 
+    public event UnityAction<GameObject> AddIconForTaskBar;
+
+
     private void Awake()
     {
         _playerInput = new PlayerInput();
@@ -38,6 +41,7 @@ public class InventoryIcon : MonoBehaviour, IPointerClickHandler, IPointerExitHa
     private void CreateWorkWindow()
     {
         GameObject panel = _createWorkPanel.CreateAndReturn(_typefile.CurrentIcon._typefile.OpeningApplication);
+        AddIconForTaskBar?.Invoke(panel);
 
         if (panel.TryGetComponent<AddInformation>(out AddInformation workpanel))
         {

@@ -10,4 +10,13 @@ public class ChangingPanelActivity : MonoBehaviour
     {
         panel.SetActive(false);
     }
+
+    public void TurnOnOrOffPanel(GameObject panel)
+    {
+        if (panel.activeSelf == true)
+            panel.SetActive(false);
+        else
+            panel.SetActive(true);
+    }
+
 }

@@ -5,14 +5,13 @@ using UnityEngine.UI;
 public class IconView : MonoBehaviour
 {
     public ComputerIconsSO _typefile;
+    public TMP_Text _text;
+    public GameObject _inputField;
 
     [SerializeField] private Image _icon;
-    public TMP_Text _text;
 
     [SerializeField] private GameObject _hoverPanel;
     [SerializeField] private GameObject _clickPanel;
-    
-    public GameObject _inputField;
 
     public void ChangeActivePanelWhenHover(bool active)
     {
@@ -27,6 +26,6 @@ public class IconView : MonoBehaviour
     private void Awake()
     {
         _icon.sprite = _typefile.ImageIcon;
-         _text.text = _typefile.Name;
+        _text.text = _typefile.Name;
     }
 }

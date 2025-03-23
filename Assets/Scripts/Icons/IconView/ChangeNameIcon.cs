@@ -10,5 +10,4 @@ public class ChangeNameIcon : MonoBehaviour
         _iconView._text.text = text;
         _name.LoadName(_iconView._text.text);
     }
-
 }

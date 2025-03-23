@@ -1,16 +1,21 @@
+using TMPro;
 using UnityEngine;
 
 public class NextButton : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private SavePassword _savePassword;
+    [SerializeField] private TMP_InputField _inputField;
+    [SerializeField] private Animator _animation;
 
-    // Update is called once per frame
-    void Update()
+    public void OnClick()
     {
-        
+        if (_savePassword.Password == _inputField.text)
+        {
+            _savePassword.PanelOnEnter();
+        }
+        else
+        {
+            _animation.SetTrigger("wrong");
+        }
     }
 }

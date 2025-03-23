@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 5280835260174455499}
   - component: {fileID: 318656543339065692}
   - component: {fileID: 3974877706675249118}
+  - component: {fileID: 5424697972079960027}
   m_Layer: 3
   m_Name: Terminal
   m_TagString: Untagged
@@ -693,6 +694,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
+--- !u!114 &5424697972079960027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499812612973367934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efe6870b96f36a47b597951f53e38ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 0}
+  _iconForTaskBar: {fileID: 1455324319876027120, guid: 3899aaf96fff5a843a2f459e27b7963f, type: 3}
 --- !u!1 &8513596418047491323
 GameObject:
   m_ObjectHideFlags: 0
